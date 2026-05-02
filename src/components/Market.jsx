@@ -9,8 +9,16 @@ const FALLBACK_DATA = [
 export default function Market() {
   const [coins, setCoins] = useState([]);
   const { addAsset } = useContext(PortfolioContext);
-  const [selectedCoin, setSelectedCoin] = useState(null);
-  const [amount, setAmount] = useState('');
+
+  const handleAddCoin = (coin) => {
+    const amount = window.prompt(`How many ${coin.symbol} would you like to add?`, '1');
+    if (amount === null) return;
+
+    const parsedAmount = parseFloat(amount);
+    if (!parsedAmount || parsedAmount <= 0) return;
+
+    addAsset(coin, parsedAmount);
+  };
 
   useEffect(() => {
     fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false')
@@ -50,12 +58,17 @@ export default function Market() {
                   </div>
                 </td>
                 <td className="py-5 text-white">${coin.current_price.toLocaleString()}</td>
-                <td className={`py-5 font-mono ${coin.price_change_percentage_24h > 0 ? 'text-[#34d399]' : 'text-[#ef4444]'}`}>
-                   {coin.price_change_percentage_24h?.toFixed(2)}%
+                <td className="py-5">
+                  <div className="flex justify-center">
+                    <span className={coin.price_change_percentage_24h > 0 ? 'price-change-badge price-change-badge--up' : 'price-change-badge price-change-badge--down'}>
+                      {coin.price_change_percentage_24h?.toFixed(2)}%
+                    </span>
+                  </div>
                 </td>
                 <td className="py-5 pr-6 text-right">
                   <button 
-                    onClick={() => { setSelectedCoin(coin); setAmount(''); }}
+                    type="button"
+                    onClick={() => handleAddCoin(coin)}
                     className="text-[#666666] hover:text-white border border-[#333333] hover:border-white w-8 h-8 rounded-lg flex items-center justify-center ml-auto"
                   >+</button>
                 </td>
