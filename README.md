@@ -1,5 +1,6 @@
 # CryptoTracker | Crypto Portfolio Manager
-<img width="1919" height="910" alt="image" src="https://github.com/user-attachments/assets/c8e2c437-6704-4b25-8ec8-d60198f2be73" />
+<img width="1881" height="892" alt="image" src="https://github.com/user-attachments/assets/557b5382-723b-450d-8907-192d109cb539" />
+
 
 
 
