@@ -15,71 +15,78 @@ export default function PortfolioForm() {
   const { portfolio, setPortfolio } = useContext(PortfolioContext);
   const navigate = useNavigate();
 
-  const [selectedAsset, setSelectedAsset] = useState('');
+  const [selectedAsset, setSelectedAsset] = useState(null);
   const [amount, setAmount] = useState('');
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     if (!selectedAsset || !amount) return;
-    const newAsset = { id: Date.now(), name: selectedAsset, amount: parseFloat(amount) };
+
+    const newAsset = { 
+      id: Date.now(), 
+      name: selectedAsset.name, 
+      amount: parseFloat(amount) 
+    };
+    
     setPortfolio([...portfolio, newAsset]);
-    navigate('/portfolio'); 
+    navigate('/portfolio');
   };
 
   return (
-    <div className="max-w-xl mx-auto p-12 mt-12 bg-black border border-white/10 rounded-xl">
-      <h2 className="text-xl font-light text-white mb-10 tracking-tight">Add Asset</h2>
-      
-      <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+    <div className="max-w-md mx-auto mt-20">
+      <div className="bg-[#0a0a0a] border border-white/5 p-10 rounded-3xl">
+        <h2 className="text-sm font-medium text-white mb-8 tracking-widest uppercase">Add Asset</h2>
         
-        <div>
-          <label className="block text-[10px] uppercase tracking-widest text-[#666666] mb-4">
-            Select Asset
-          </label>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {POPULAR_ASSETS.map((asset) => (
-              <button
-                key={asset.id}
-                type="button"
-                onClick={() => setSelectedAsset(asset.name)}
-                className={`p-4 text-left border transition-all duration-300
-                  ${selectedAsset === asset.name 
+        <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+          
+          <div>
+            <label className="block text-[10px] uppercase tracking-widest text-[#666666] mb-4">
+              Select Asset
+            </label>
+            <div className="grid grid-cols-2 gap-3">
+              {POPULAR_ASSETS.map((asset) => (
+                <button
+                  key={asset.id}
+                  type="button"
+                  onClick={() => setSelectedAsset(asset)}
+                  className={`p-4 border transition-all duration-300 ${
+                    selectedAsset?.id === asset.id 
                     ? 'border-white bg-white/5' 
-                    : 'border-white/10 hover:border-white/30 bg-transparent'
-                  }
-                `}
-              >
-                <div className={`text-sm font-medium ${selectedAsset === asset.name ? 'text-white' : 'text-[#666666]'}`}>
-                  {asset.name}
-                </div>
-                <div className="text-[10px] text-[#444444] uppercase">{asset.symbol}</div>
-              </button>
-            ))}
+                    : 'border-white/5 hover:border-white/20 bg-transparent'
+                  }`}
+                >
+                  <div className={`text-xs font-medium ${selectedAsset?.id === asset.id ? 'text-white' : 'text-[#666666]'}`}>
+                    {asset.name}
+                  </div>
+                  <div className="text-[9px] text-[#444444] uppercase tracking-wider">{asset.symbol}</div>
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+]
+          <div>
+            <label className="block text-[10px] uppercase tracking-widest text-[#666666] mb-2">
+              Amount
+            </label>
+            <input
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className="w-full bg-transparent border-b border-white/10 py-2 text-white focus:border-white outline-none transition-all placeholder:text-[#333333] text-sm"
+              placeholder="0.00"
+              step="any"
+            />
+          </div>
 
-        <div>
-          <label className="block text-[10px] uppercase tracking-widest text-[#666666] mb-2">
-            Amount
-          </label>
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="w-full bg-transparent border-b border-white/20 py-2 focus:border-white outline-none text-white transition-all placeholder:text-[#333333]"
-            placeholder="0.00"
-            step="any"
-          />
-        </div>
-
-        <button 
-          type="submit" 
-          disabled={!selectedAsset || !amount}
-          className="mt-6 w-full py-3 border border-white/20 text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-white"
-        >
-          Confirm
-        </button>
-      </form>
+          <button 
+            type="submit" 
+            disabled={!selectedAsset || !amount}
+            className="w-full py-3 border border-white/10 text-[#666666] hover:text-white hover:border-white text-[10px] uppercase tracking-widest transition-all duration-300 disabled:opacity-20 disabled:hover:border-white/10"
+          >
+            Confirm Transaction
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

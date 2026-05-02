@@ -5,10 +5,9 @@
 
 
 body {
-  background-color: #000000; 
-  color: #EDEDED;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+  background: radial-gradient(circle at 50% -20%, #1a1a1a 0%, #000000 70%);
+  min-height: 100vh;
 }
 .glass-panel {
   background: rgba(22, 22, 22, 0.445);
