@@ -82,9 +82,7 @@ body {
   font-weight: 600;
 }
 
-/* Market component: 24h change background and row hover styles
-   Targets the Tailwind arbitrary color classes used in Market.jsx
-   without modifying that file. */
+
 .text-\[\#34d399\] {
   background-color: rgba(52, 211, 153, 0.08);
   padding: 0.125rem 0.5rem;
@@ -98,7 +96,6 @@ body {
   display: inline-block;
 }
 
-/* Row hover for table rows that use Tailwind's `group` class */
 .group:hover {
   background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   transform: translateY(-4px);
