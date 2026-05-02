@@ -1,4 +1,6 @@
-# NexusTracker | Crypto Portfolio Manager
+# CryptoTracker | Crypto Portfolio Manager
+<img width="1919" height="914" alt="image" src="https://github.com/user-attachments/assets/a99f471a-19e2-42c6-adaa-62f55dc33f79" />
+
 
 ## Overview
 NexusTracker is a minimalist, high-performance cryptocurrency portfolio tracker designed for real-time asset monitoring. Built as a capstone project for the Computer Science & Engineering program, the application demonstrates efficient state management and dynamic routing within a React environment.
