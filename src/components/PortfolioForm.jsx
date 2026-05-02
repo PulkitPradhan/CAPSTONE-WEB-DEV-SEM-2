@@ -21,75 +21,63 @@ export default function PortfolioForm() {
   const handleSubmit = (e) => {
     e.preventDefault(); 
     if (!selectedAsset || !amount) return;
-
-    const newAsset = { 
-      id: Date.now(), 
-      name: selectedAsset, 
-      amount: parseFloat(amount) 
-    };
-    
+    const newAsset = { id: Date.now(), name: selectedAsset, amount: parseFloat(amount) };
     setPortfolio([...portfolio, newAsset]);
-    navigate('/'); 
+    navigate('/portfolio'); 
   };
 
   return (
-    <div className="max-w-3xl mx-auto glass-panel p-10 rounded-3xl mt-12 shadow-2xl">
-      <h2 className="text-3xl mb-8 premium-header">Add Private Asset</h2>
+    <div className="max-w-xl mx-auto p-12 mt-12 bg-black border border-white/10 rounded-xl">
+      <h2 className="text-xl font-light text-white mb-10 tracking-tight">Add Asset</h2>
       
-      <form onSubmit={handleSubmit} className="flex flex-col gap-10 font-sans">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-8">
         
         <div>
-          <label className="block text-sm font-semibold text-[#B0E4CC] mb-4 tracking-wide uppercase">
-            Select Asset to Curate
+          <label className="block text-[10px] uppercase tracking-widest text-[#666666] mb-4">
+            Select Asset
           </label>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {POPULAR_ASSETS.map((asset) => (
               <button
                 key={asset.id}
                 type="button"
                 onClick={() => setSelectedAsset(asset.name)}
-                className={`p-5 rounded-2xl border flex flex-col items-center justify-center transition-all duration-300
+                className={`p-4 text-left border transition-all duration-300
                   ${selectedAsset === asset.name 
-                    ? 'border-[#408A71] bg-[#408A71]/20 shadow-inner scale-105' 
-                    : 'border-[#408A71]/30 bg-[#091413]/50 text-[#408A71] hover:border-[#408A71] hover:text-[#B0E4CC] hover:-translate-y-1' 
+                    ? 'border-white bg-white/5' 
+                    : 'border-white/10 hover:border-white/30 bg-transparent'
                   }
                 `}
               >
-              
-                <span className={`font-bold text-lg ${selectedAsset === asset.name ? 'text-[#B0E4CC]' : 'text-[#408A71]'}`}>
+                <div className={`text-sm font-medium ${selectedAsset === asset.name ? 'text-white' : 'text-[#666666]'}`}>
                   {asset.name}
-                </span>
-                <span className={`text-xs mt-1 ${selectedAsset === asset.name ? 'text-white/70' : 'text-[#408A71]/70'}`}>
-                  {asset.symbol}
-                </span>
+                </div>
+                <div className="text-[10px] text-[#444444] uppercase">{asset.symbol}</div>
               </button>
             ))}
           </div>
         </div>
 
-     
         <div>
-          <label className="block text-sm font-semibold text-[#B0E4CC] mb-3 tracking-wide uppercase">
-            Amount Held
+          <label className="block text-[10px] uppercase tracking-widest text-[#666666] mb-2">
+            Amount
           </label>
           <input
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            
-            className="w-full p-5 rounded-xl border border-[#408A71]/30 bg-[#091413]/50 focus:outline-none focus:ring-2 focus:ring-[#B0E4CC] focus:border-transparent text-[#B0E4CC] placeholder:text-[#408A71]/50 transition-all shadow-inner hover:bg-[#091413]/70 hover:shadow-md"
-            placeholder="e.g. 2.5"
+            className="w-full bg-transparent border-b border-white/20 py-2 focus:border-white outline-none text-white transition-all placeholder:text-[#333333]"
+            placeholder="0.00"
             step="any"
           />
         </div>
 
-      
         <button 
           type="submit" 
           disabled={!selectedAsset || !amount}
-          className="mt-4 w-full bg-[#B0E4CC] text-[#091413] py-5 rounded-xl font-bold transition-all duration-300 shadow-md hover:bg-white hover:shadow-xl hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none uppercase tracking-wider"
+          className="mt-6 w-full py-3 border border-white/20 text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-white"
         >
-          Curate Asset
+          Confirm
         </button>
       </form>
     </div>

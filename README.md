@@ -1,16 +1,29 @@
-# React + Vite
+# NexusTracker | Crypto Portfolio Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+NexusTracker is a minimalist, high-performance cryptocurrency portfolio tracker designed for real-time asset monitoring. Built as a capstone project for the Computer Science & Engineering program, the application demonstrates efficient state management and dynamic routing within a React environment.
 
-Currently, two official plugins are available:
+## Tech Stack
+- **Frontend:** React (Vite)
+- **Styling:** Tailwind CSS
+- **Routing:** React Router DOM
+- **Data Fetching:** Native Fetch API
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Core Features
+- **Live Market Feed:** Real-time data integration with public crypto APIs.
+- **Dynamic Routing:** Seamless navigation between Market, Portfolio, and Management views.
+- **State Management:** Implementation of React Context API for global portfolio state without the overhead of external libraries.
+- **Minimalist UI:** High-contrast, design-focused interface optimizing readability and user focus.
 
-## React Compiler
+## Project Structure
+- `src/components/`: Modular, reusable components (Dashboard, Market, PortfolioForm).
+- `src/App.jsx`: Root application wrapper managing global context and routing.
+- `src/index.css`: Global styles and custom Tailwind configuration.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Setup Instructions
+1. Clone the repository.
+2. Run `npm install` to download dependencies.
+3. Run `npm run dev` to start the development server.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Academic Context
+This project adheres to strict functional component architecture using React Hooks (`useState`, `useEffect`, `useContext`) and avoids external state management libraries to maintain a lightweight, syllabus-compliant codebase.
